@@ -25,7 +25,8 @@ jobs:
     strategy:
       # devices to build for
       matrix:
-        board: [LINUX, ESP32, ESP8266_BOARD, ESP8266_4MB, MICROBIT1, MICROBIT2]
+        #board: [LINUX, ESP32, ESP8266_BOARD, ESP8266_4MB, MICROBIT1, MICROBIT2]
+        board:  [WHISKER]
       # try and build for all devices even if one fails
       fail-fast: false 
     steps:
@@ -59,7 +60,8 @@ jobs:
     strategy:
       # devices to build for
       matrix:
-        board: [PUCKJS, PIXLJS, MDBT42Q, BANGLEJS, BANGLEJS2, PUCKJS_MINIMAL]
+        #board: [PUCKJS, PIXLJS, MDBT42Q, BANGLEJS, BANGLEJS2, PUCKJS_MINIMAL]
+        board:  [WHISKER]
       # try and build for all devices even if one fails
       fail-fast: false 
     steps:
@@ -88,40 +90,40 @@ jobs:
           bin/*.zip
        
   # Builds with PAD_FOR_BOOTLOADER=1
-  build_padded:
-    runs-on: ubuntu-20.04
-    strategy:
-      # devices to build for
-      matrix:
-        board: [ESPRUINOBOARD, PICO_R1_3, ESPRUINOWIFI]
-      # try and build for all devices even if one fails
-      fail-fast: false 
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: make ${{ matrix.board }}
-      env:
-        TRAVIS: 1
-        RELEASE: 1
-        PAD_FOR_BOOTLOADER: 1
-        BOARD: ${{ matrix.board }} 
-        UPLOADTOKEN: ${{ secrets.UPLOADTOKEN }}  
-      run: |
-        source ./scripts/provision.sh  ${{ matrix.board }}
-        make
-        ./scripts/ci_upload.sh 
-    - name: Upload ${{ matrix.board }} build artifact
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        name: ${{ matrix.board }}
-        path: |
-          bin/*.bin
-          bin/*.hex
-          bin/*.tgz
-          bin/*.zip
- 
- 
+#  build_padded:
+#    runs-on: ubuntu-20.04
+#    strategy:
+#      # devices to build for
+#      matrix:
+#        board: [ESPRUINOBOARD, PICO_R1_3, ESPRUINOWIFI]
+#      # try and build for all devices even if one fails
+#      fail-fast: false
+#    steps:
+#    - uses: actions/checkout@v3
+#      with:
+#        fetch-depth: 0
+#    - name: make ${{ matrix.board }}
+#      env:
+#        TRAVIS: 1
+#        RELEASE: 1
+#        PAD_FOR_BOOTLOADER: 1
+#        BOARD: ${{ matrix.board }}
+#        UPLOADTOKEN: ${{ secrets.UPLOADTOKEN }}
+#      run: |
+#        source ./scripts/provision.sh  ${{ matrix.board }}
+#        make
+#        ./scripts/ci_upload.sh
+#    - name: Upload ${{ matrix.board }} build artifact
+#      uses: actions/upload-artifact@v3.1.2
+#      with:
+#        name: ${{ matrix.board }}
+#        path: |
+#          bin/*.bin
+#          bin/*.hex
+#          bin/*.tgz
+#          bin/*.zip
+#
+#
 # Disable doc building for now 
 #  docs:
 #    runs-on: ubuntu-20.04      

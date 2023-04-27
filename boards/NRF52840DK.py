@@ -20,9 +20,9 @@ info = {
  'link' :  [ "https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF52-DK" ],
  'espruino_page_link' : 'nRF52840DK',
   # This is the PCA10036
- 'default_console' : "EV_SERIAL1",
- 'default_console_tx' : "D6",
- 'default_console_rx' : "D8",
+ 'default_console' : "EV_BLUETOOTH",
+ #'default_console_tx' : "D6",
+ #'default_console_rx' : "D8",
  'default_console_baudrate' : "9600",
  'variables' : 12500, # How many variables are allocated for Espruino to use. RAM will be overflowed if this number is too high and code won't compile.
 # 'bootloader' : 1,
@@ -31,9 +31,10 @@ info = {
    'optimizeflags' : '-Os',
    'libraries' : [
      'BLUETOOTH',
-     'NET',
-     'GRAPHICS',
-#     'NFC',
+     #'NET',
+     #'GRAPHICS',
+     #'NFC',
+     'FILESYSTEM',
      'NEOPIXEL'
    ],
    'makefile' : [

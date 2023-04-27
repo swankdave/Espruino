@@ -28,9 +28,9 @@ info = {
     'optimizeflags' : '-Os',
     'libraries' : [
       'BLUETOOTH',
-      'NEOPIXEL',
-      'FILESYSTEM',
-      'NRF'
+      #'NEOPIXEL',
+      #'FILESYSTEM',
+      #'NRF'
     ],
     'makefile' : [
       'INCLUDE += -I libs/math',

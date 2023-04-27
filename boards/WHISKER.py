@@ -20,8 +20,6 @@ info = {
   'link' :  [ "http://www.espruino.com/MDBT42Q" ],
   'espruino_page_link' : 'MDBT42Q',
   'default_console' : "EV_BLUETOOTH",
-  #'default_console_tx' : "D6",
-  #'default_console_rx' : "D8",
   'default_console_baudrate' : "9600",
   'variables' : 2756, # How many variables are allocated for Espruino to use. RAM will be overflowed if this number is too high and code won't compile.
   'bootloader' : 1,
@@ -32,7 +30,7 @@ info = {
       'BLUETOOTH',
       'NEOPIXEL',
       'FILESYSTEM',
-      #'NRF'
+      'NRF'
     ],
     'makefile' : [
       'INCLUDE += -I libs/math',
@@ -51,7 +49,7 @@ info = {
       'DEFINES += -DBOARD_PCA10056',
       'DEFINES += -DNRF_USB=1 -DUSB',
       'DEFINES += -DNEOPIXEL_SCK_PIN=22 -DNEOPIXEL_LRCK_PIN=23', # nRF52840 needs LRCK pin defined for neopixel
-      'NRF_SDK15=1'
+      'NRF_SDK17=1'
     ]
   }
 };

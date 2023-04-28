@@ -49,7 +49,7 @@ info = {
       'DEFINES += -DBOARD_PCA10056',
       'DEFINES += -DNRF_USB=1 -DUSB',
       'DEFINES += -DNEOPIXEL_SCK_PIN=22 -DNEOPIXEL_LRCK_PIN=23', # nRF52840 needs LRCK pin defined for neopixel
-      'NRF_SDK17=1'
+      'NRF_SDK16=1'
     ]
   }
 };

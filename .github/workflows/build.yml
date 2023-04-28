@@ -52,6 +52,7 @@ jobs:
           bin/*.hex
           bin/*.tgz
           bin/*.zip
+          bin/*.app_hex
     
         
   # Builds with DFU_UPDATE_BUILD=1        

@@ -161,7 +161,7 @@ class Block:
 
 def convert_from_hex_to_uf2(buf):
     global appstartaddr
-    appstartaddr = None
+    #appstartaddr = None
     upper = 0
     currblock = None
     blocks = []
@@ -182,8 +182,8 @@ def convert_from_hex_to_uf2(buf):
             break
         elif tp == 0:
             addr = upper + ((rec[1] << 8) | rec[2])
-            if appstartaddr == None:
-                appstartaddr = addr
+            #if appstartaddr == None:
+            #    appstartaddr = addr
             i = 4
             while i < len(rec) - 1:
                 if not currblock or currblock.addr & ~0xff != addr & ~0xff:
@@ -296,7 +296,7 @@ def main():
     parser.add_argument('-i', '--info', action='store_true',
                         help='display header information from UF2, do not convert')
     args = parser.parse_args()
-    appstartaddr = int(args.base, 0)
+    appstartaddr = 159744#0x27000
 
     families = load_families()
 

@@ -16,12 +16,12 @@
 import pinutils;
 
 info = {
-  'name' : "WHISKER Module",
+  'name' : "WHISKER",
   'link' :  [ "http://www.espruino.com/MDBT42Q" ],
   'espruino_page_link' : 'MDBT42Q',
   'default_console' : "EV_BLUETOOTH",
   'default_console_baudrate' : "9600",
-  'variables' : 2756, # How many variables are allocated for Espruino to use. RAM will be overflowed if this number is too high and code won't compile.
+  'variables' : 12500, # How many variables are allocated for Espruino to use. RAM will be overflowed if this number is too high and code won't compile.
   'bootloader' : 1,
   'binary_name' : 'espruino_%v_whisker.hex',
   'build' : {
@@ -29,7 +29,7 @@ info = {
     'libraries' : [
       'BLUETOOTH',
       #'NEOPIXEL',
-      #'FILESYSTEM',
+      'FILESYSTEM',
       #'NRF'
     ],
     'makefile' : [
@@ -48,29 +48,29 @@ info = {
       'DEFINES += -DCONFIG_GPIO_AS_PINRESET', # Allow the reset pin to work
       'DEFINES += -DBOARD_PCA10056',
       'DEFINES += -DNRF_USB=1 -DUSB',
-      'DEFINES += -DNEOPIXEL_SCK_PIN=22 -DNEOPIXEL_LRCK_PIN=23', # nRF52840 needs LRCK pin defined for neopixel
-      'NRF_SDK17=1'
+      #'DEFINES += -DNEOPIXEL_SCK_PIN=22 -DNEOPIXEL_LRCK_PIN=23', # nRF52840 needs LRCK pin defined for neopixel
+      'NRF_SDK15=1'
     ]
   }
-};
+}
 
 chip = {
-  'part' : "NRF52832",
+  'part' : "NRF52840",
   'family' : "NRF52",
-  'package' : "QFN48",
-  'ram' : 64,
-  'flash' : 512,
+  'package' : "AQFN73",
+  'ram' : 256,
+  'flash' : 1024,
   'speed' : 64,
-  'usart' : 1,
-  'spi' : 1,
-  'i2c' : 1,
+  'usart' : 2,
+  'spi' : 3,
+  'i2c' : 2,
   'adc' : 1,
   'dac' : 0,
   'saved_code' : {
-    'address' : ((118 - 10) * 4096), # Bootloader takes pages 120-127, FS takes 118-119
+    'address' : ((246 - 10) * 4096), # Bootloader takes pages 248-255, FS takes 246-247
     'page_size' : 4096,
     'pages' : 10,
-    'flash_available' : 512 - ((31 + 8 + 2 + 10)*4) # Softdevice uses 31 pages of flash, bootloader 8, FS 2, code 10. Each page is 4 kb.
+    'flash_available' : 1024 - ((31 + 8 + 2 + 10)*4) # Softdevice uses 31 pages of flash, bootloader 8, FS 2, code 10. Each page is 4 kb.
   },
 };
 
@@ -78,7 +78,7 @@ devices = {
   'LED1' : { 'pin' : 'D1' },
   'LED2' : { 'pin' : 'D2', 'no_bootloader':True }, # don't use LED2 in the bootloader since we may be using a bare module
   'BTN1' : { 'pin' : 'D0', 'pinstate' : 'IN_PULLDOWN' },
-  'NFC': { 'pin_a':'D9', 'pin_b':'D10' },
+  #'NFC': { 'pin_a':'D9', 'pin_b':'D10' },
   # Pin D23 is used for clock when driving neopixels - as not specifying a pin seems to break things
 };
 

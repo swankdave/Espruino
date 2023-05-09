@@ -26,7 +26,7 @@ jobs:
       # devices to build for
       matrix:
         #board: [LINUX, ESP32, ESP8266_BOARD, ESP8266_4MB, MICROBIT1, MICROBIT2]
-        board:  [NRF52840DK]
+        board: [PUCKJS_MINIMAL] # [NRF52840DK]
       # try and build for all devices even if one fails
       fail-fast: false 
     steps:
@@ -52,7 +52,6 @@ jobs:
           bin/*.hex
           bin/*.tgz
           bin/*.zip
-          bin/*.app_hex
     
         
   # Builds with DFU_UPDATE_BUILD=1        
